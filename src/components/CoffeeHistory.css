@@ -1,0 +1,90 @@
+.coffee-history-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: #ffffff;
+  padding: 20px;
+  transition: background-color 0.5s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
+}
+
+.coffee-image-slider {
+  position: relative;
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  padding: 0 30px; /* Adjust padding for arrows */
+  margin-right: 20px; /* Space between image slider and text */
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  background-color: rgba(253, 253, 253, 0.5);
+  border-radius: 50%;
+  padding: 5px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0.5;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-50%); /* Keep this to center vertically */
+}
+
+/* Adjust SVG size within the arrow buttons */
+.slider-arrow svg {
+  width: 30px;
+  height: 30px;
+}
+
+.slider-arrow:hover {
+  transform: translateY(-50%) scale(1.5); /* Scale up but maintain vertical centering */
+  opacity: 5;
+}
+
+.left-arrow {
+  left: 10px; /* Adjust to ensure it doesn't overlap the image */
+}
+
+.right-arrow {
+  right: 10px; /* Adjust to ensure it doesn't overlap the image */
+}
+
+.coffee-image-slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.coffee-text {
+  flex: 2;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .coffee-image-slider {
+    max-width: 100%;
+    order: 2;
+    padding: 0; /* Adjust for smaller screens */
+  }
+
+  .coffee-text {
+    order: 1;
+    flex: 1;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coffee-history-container {
+    flex-direction: column;
+  }
+}

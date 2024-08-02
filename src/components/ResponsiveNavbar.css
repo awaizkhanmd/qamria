@@ -1,0 +1,98 @@
+/* Base styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0.5rem;
+  height: 50px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Shadow effect for depth */
+  z-index: 3; /* Ensure navbar is above other content */
+  position: relative; /* Required for z-index to take effect */
+  width: calc(100% - 1rem); /* Adjust width if navbar is not full-width */
+  margin: 0 auto; /* Center the navbar if not full-width */
+  border-radius: 10px; /* Optional: Adds rounded corners to the navbar */
+}
+
+.logo {
+  height: auto;
+  max-height: 50px;
+}
+
+.navbar-toggle {
+  display: none; /* Hidden in desktop view */
+  cursor: pointer;
+  font-size: 24px;
+  color: #004d00; /* Dark green for visibility */
+}
+
+/* Desktop view navigation links */
+.navbar-links, .navbar-user-settings {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Horizontal layout */
+  gap: 10px; /* Space between items */
+}
+
+.navbar-links li a, .navbar-user-settings li a {
+  text-decoration: none;
+  color: #004d00; /* Text color */
+  padding: 8px 16px; /* Spacing around text */
+  position: relative; /* For hover effect */
+}
+
+/* Hover effect */
+.navbar-links li a:hover::after, .navbar-user-settings li a:hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #004d00; /* Dark green underline */
+  left: 0;
+  bottom: -5px; /* Positioning */
+}
+
+
+/* Base styles remain unchanged */
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block; /* Show hamburger icon */
+  }
+
+  .navbar-menu {
+    display: none; /* Hide menu by default */
+    flex-direction: column;
+    width: 100%;
+    background-color: white; /* Matching the navbar background */
+    position: absolute;
+    top: 60px; /* Adjust based on actual navbar height */
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure menu is above other content */
+  }
+
+  /* This part correctly shows the menu when 'expanded' class is added */
+  .navbar-menu.expanded {
+    display: flex; /* Correctly showing the menu */
+  }
+
+  .navbar-links, .navbar-user-settings {
+    display: flex; /* IMPORTANT: This needs to be flex to take effect */
+    flex-direction: column; /* Stack items vertically */
+    width: 100%; /* Full width of container */
+    padding: 0; /* Reset any padding */
+    gap: 5px; /* Remove gap if any */
+  }
+
+  .navbar-links li, .navbar-user-settings li {
+    display: block; /* Ensure each item is displayed correctly */
+  }
+
+  .navbar-links li a, .navbar-user-settings li a {
+    padding: 10px; /* Larger tap targets for mobile */
+    border-bottom: 1px solid #f0f0f0; /* Optional: adds a separator between links */
+  }
+}

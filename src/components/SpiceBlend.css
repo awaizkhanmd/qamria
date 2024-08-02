@@ -1,0 +1,104 @@
+.spice-blend-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  color: #0a0909;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+}
+
+.spice-items {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.spice-item {
+  text-align: center;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgb(219, 237, 215);
+  width: 300px;
+  margin: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevents content from overflowing */
+}
+
+.spice-item img {
+  width: 250px; /* Increased size for desktop */
+  height: 250px; /* Fixed height for consistency */
+  object-fit: contain; /* Ensures the image covers the area, maintaining its aspect ratio */
+  margin-bottom: 0.5em;
+  background: #ffffff;
+  padding: 10px;
+  /* Removed border-radius for a square look, adjust as needed */
+}
+
+.spice-item img:hover {
+  transform: scale(1.1);
+}
+
+.arrow {
+  display: block; /* Show arrows */
+  position: absolute; /* Position relative to the nearest positioned ancestor */
+  top: 50%; /* Center vertically */
+  z-index: 100; /* Ensure arrows are clickable and above other content */
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: -30px; /* Position left arrow on the left side of the container */
+}
+
+.right-arrow {
+  right: -30px; /* Position right arrow on the right side of the container */
+}
+
+@media (max-width: 480px) {
+  /* Mobile-specific styles */
+  .spice-items {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory;
+    display: flex; /* Flex display to manage inline behavior */
+    justify-content: center; /* Center items to prevent shifting to the right */
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
+
+  .spice-item {
+    flex: 0 0 80vw; /* Use flexbox to control item width */
+    margin: 10px 0px; /* Adjust margin to ensure centering and provide space between items */
+    scroll-snap-align: center; /* Align items to the center of the viewport */
+    border-radius: 0px;
+    box-shadow: 0 2px 4px rgb(219, 237, 215);
+  }
+
+  .arrow {
+    display: block; /* Ensure arrows are displayed in mobile */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+  }
+  
+  .left-arrow, .right-arrow {
+    /* Adjust top position to align with the middle of the items, considering arrow size */
+    top: calc(70% - 30px);
+  }
+
+  .left-arrow {
+    left: 300px; /* Adjust to position the left arrow closer to the screen's edge */
+  }
+
+  .right-arrow {
+    right: 300px; /* Adjust to position the right arrow closer to the screen's edge */
+  }
+}

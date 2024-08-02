@@ -1,0 +1,98 @@
+/* Footer.css */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .footer-brand h2,
+  .footer-brand p,
+  .footer-about p {
+    margin: 5px 0;
+  }
+  
+  .social-links a {
+    margin-right: 10px;
+  }
+  
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-column h3 {
+    margin-bottom: 10px;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .footer-subscribe form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .footer-subscribe input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+  }
+  
+  .footer-subscribe button {
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .footer-row {
+      flex-direction: column;
+    }
+    .footer-subscribe form {
+      flex-direction: column;
+    }
+    .footer-subscribe input {
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .fadeIn {
+    animation: fadeIn 1s ease forwards;
+  }
+  
+  /* Use JavaScript to add 'fadeIn' class on scroll */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .fadeIn {
+    animation: fadeIn 1s ease forwards;
+  }
+  
+ 

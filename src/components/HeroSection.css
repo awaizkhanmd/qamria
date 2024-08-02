@@ -1,0 +1,68 @@
+.hero-container {
+    position: relative;
+    height: 100vh; /* Full height of the viewport */
+    background-image: url('../assests//Banner.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    z-index: 2;
+    overflow: hidden; /* Ensures that the ::before pseudo-element's corners are also rounded */
+    border-radius: 15px; /* Adjust as needed for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow effect for depth */
+    margin: 20px; /* Adds some space around the component, adjust as needed */
+    /* Ensure the background and overlay are contained within the border-radius */
+    background-clip: padding-box; 
+  }
+  
+  .hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+    z-index: -1;
+    border-radius: 25px; /* Ensures the overlay also has rounded corners */
+  }
+  
+  .hero-container h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #886F4C; /* Coffee color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .hero-container button:hover {
+    background-color: #745439; /* Darker shade for hover effect */
+    transform: scale(1.05); /* Slight scale */
+  }
+  
+  @media (max-width: 768px) {
+    .hero-container {
+      height: 50vh;
+    }
+  
+    .hero-container h1 {
+      font-size: 2rem; /* Smaller text */
+    }
+  
+    .hero-container p {
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,76 @@
+/* StickyScrollReveal.css */
+
+.sticky-scroll-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-x: hidden; /* Ensure no horizontal overflow */
+    padding: 20px 0; /* Vertical padding only */
+    margin: auto; /* Center the container */
+  }
+  
+  .section {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    width: 5755px;
+    max-width: 1205px; /* Max width for larger screens, adjust as needed */
+    margin-bottom: 20px; /* Space between sections */
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Shadow effect for depth */
+  }
+  
+  .section:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  }
+  
+  .section-text,
+  .section-image {
+    flex: 1 1 50%; /* Flex basis of 50%, allowing shrink and grow */
+  }
+  
+  .section-text {
+    padding-right: 20px; /* Space between text and image on larger screens */
+  }
+  
+  .section-image img {
+    max-width: 100%; /* Ensure image does not overflow its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional rounded corners */
+  }
+  
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .section {
+      flex-direction: column; /* Stack text and image vertically */
+      padding: 10px; /* Reduce padding on smaller screens */
+      width: 300px;
+    max-width: 400px;
+    }
+  
+  
+    .section-text,
+    .section-image {
+      width: 100%; /* Full width for both text and image */
+      padding: 0; /* Reset padding for text */
+    }
+  
+    .section-image {
+      margin-top: 20px; /* Space between text and image when stacked */
+    }
+  }
+  

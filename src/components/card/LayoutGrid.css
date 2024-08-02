@@ -1,0 +1,85 @@
+/* LayoutGrid.css */
+.layout-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates a 4-column layout */
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    width: 350px; /* Fixed width */
+    height: 400px; /* Fixed height to make it square */
+    margin: auto; /* Center the card if the column is wider */
+    opacity: 50; /* Start with cards invisible */
+    transform: translateY(20px); /* Start with cards slightly translated downward */
+    transition: opacity 0.2s ease, transform 0.10s ease;
+  }
+  .card.visible {
+    opacity: 1; /* Animate to fully visible */
+    transform: translateY(0); /* Animate to no translation */
+}
+  
+  .card-image {
+    width: 100%;
+    height: 100%; /* Makes the image take up the whole card */
+    object-fit: cover; /* Ensures the image covers the area, maintaining its aspect ratio */
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .card.expanded .card-image {
+    transform: scale(1.1);
+  }
+  
+  .card-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(100%);
+  }
+  
+  .card.expanded .card-details {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  .card-description {
+    font-size: 1em;
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 1024px) {
+    .layout-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust the number of columns based on screen size */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      width: 200px; /* Adjust card size for smaller screens */
+      height: 200px;
+    }
+  }
+  
