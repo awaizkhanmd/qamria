@@ -4,105 +4,92 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-  }
-  
-  .header {
+}
+
+.header {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
-  }
-  
-  .logo {
-    width: 90px; /* Increased logo size */
+}
+
+.logo {
+    width: 100px;
     height: auto;
     margin-bottom: 10px;
-  }
-  
-  .reservation-content {
+}
+
+.reservation-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 1200px;
     gap: 20px;
-  }
-  
-  .date-picker-section {
+}
+
+.date-picker-section {
     display: flex;
     justify-content: center;
     width: 100%;
     max-width: 800px;
     margin-bottom: 20px;
-  }
-  
-  .legend,
-  .time-picker-section {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
-  }
-  
-  .legend {
+}
+
+.legend {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
-    gap: 10px;
-  }
-  
-  .legend h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .legend-item {
+    gap: 20px; /* Increased gap for better spacing */
+    flex-wrap: wrap; /* Allow wrapping to avoid overflow */
+}
+
+.legend-item {
     display: flex;
     align-items: center;
-    margin-bottom: 5px; /* Add margin for spacing */
-  }
-  
-  .color-box {
+}
+
+.color-box {
     width: 20px;
     height: 20px;
     border-radius: 3px;
     margin-right: 5px;
-  }
-  
-  .available-date {
+}
+
+.available-date {
     background-color: #d4edda; /* Light green */
-  }
-  
-  .selected-date {
+}
+
+.selected-date {
     background-color: #007bff; /* Blue */
-  }
-  
-  .pending-date {
+}
+
+.pending-date {
     background-color: #fff3cd; /* Light yellow */
-  }
-  
-  .booked-date {
+}
+
+.booked-date {
     background-color: #f8d7da; /* Light red */
-  }
-  
-  .closed-date {
-    background-color: #d3d3d3; /* Gray */
-  }
-  
-  .time-picker-section {
+}
+
+.mostly-booked-day {
+    background-color: #ffcc80; /* Orange */
+}
+
+.time-picker-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .time-slots {
+}
+
+.time-slots {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
-  }
-  
-  .time-slot {
+}
+
+.time-slot {
     padding: 10px 20px;
     border: 1px solid #007bff;
     border-radius: 5px;
@@ -110,84 +97,83 @@
     color: #007bff;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-  }
-  
-  /* Slot Status Colors */
-  .time-slot.available {
-    background-color: #d4edda; /* Light green for available slots */
+}
+
+.time-slot.available {
+    background-color: #d4edda;
     color: #155724;
     border-color: #c3e6cb;
-  }
-  
-  .time-slot.selected {
-    background-color: #007bff; /* Blue for selected slots */
+}
+
+.time-slot.selected {
+    background-color: #007bff;
     color: white;
-  }
-  
-  .time-slot.pending {
-    background-color: #fff3cd; /* Light yellow for pending slots */
+}
+
+.time-slot.pending {
+    background-color: #fff3cd;
     color: #856404;
     border-color: #ffeeba;
-  }
-  
-  .time-slot.booked {
-    background-color: #f8d7da; /* Light red for booked slots */
+}
+
+.time-slot.booked {
+    background-color: #f8d7da;
     color: #721c24;
     border-color: #f5c6cb;
-  }
-  
-  .time-slot.maintenance, .time-slot.closed {
-    background-color: #d3d3d3; /* Gray for maintenance/closed slots */
+}
+
+.time-slot.maintenance, .time-slot.closed {
+    background-color: #d3d3d3;
     color: #6c757d;
     border-color: #c6c8ca;
-  }
-  
-  .time-slot.available:hover:not(.selected) {
-    background-color: #28a745; /* Green for hover on available, not selected */
+}
+
+.time-slot.available:hover {
+    background-color: #28a745;
     color: white;
-  }
-  
-  .time-slot.selected {
-    background-color: #007bff; /* Blue for selected */
+}
+
+.time-slot.selected {
+    background-color: #007bff;
     color: white;
-  }
-  
-  .time-slot.pending,
-  .time-slot.booked,
-  .time-slot.closed {
+}
+
+.time-slot.pending,
+.time-slot.booked,
+.time-slot.closed,
+.time-slot.maintenance {
     cursor: not-allowed;
-  }
-  
-  /* Form Styles */
-  .details-form {
+}
+
+.details-form {
     margin-top: 20px;
     width: 100%;
     max-width: 600px;
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 15px;
     width: 100%;
-  }
-  
-  label {
+}
+
+label {
     display: block;
     margin-bottom: 5px;
-  }
-  
-  input {
+}
+
+input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     transition: border-color 0.3s;
-  }
-  
-  input:focus {
+}
+
+input:focus {
     border-color: #007bff;
-  }
-  
-  button {
+}
+
+button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -196,15 +182,14 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #0056b3;
     transform: scale(1.05);
-  }
-  
-  /* Modal Styles */
-  .modal-overlay {
+}
+
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -216,9 +201,9 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -226,30 +211,30 @@
     max-width: 500px;
     width: 90%;
     animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  .modal-content h2 {
+}
+
+.modal-content h2 {
     margin-bottom: 10px;
-  }
-  
-  .modal-content p {
+}
+
+.modal-content p {
     margin-bottom: 20px;
-  }
-  
-  .modal-content button {
+}
+
+.modal-content button {
     background-color: #28a745;
     padding: 10px 20px;
     font-size: 16px;
-  }
-  
-  .modal-content button:hover {
+}
+
+.modal-content button:hover {
     background-color: #218838;
-  }
-  
-  /* Loading Screen Styles */
-  .loading-overlay {
+}
+
+/* Loading Screen Styles */
+.loading-overlay {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -259,100 +244,83 @@
     bottom: 0;
     background: rgba(255, 255, 255, 0.8);
     z-index: 1000;
-  }
-  
-  .loading-logo {
-    width: 120px; /* Increased logo size */
+}
+
+.loading-logo {
+    width: 100px;
     height: auto;
-    margin-bottom: 20px; /* Space between logo and spinner */
-  }
-  
-  .spinner {
+    margin-bottom: 20px;
+}
+
+.spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     border-top: 4px solid #007bff;
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 1024px) {
+}
+
+@media (max-width: 1024px) {
     .reservation-content {
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
-  
+
     .date-picker-section,
     .time-picker-section,
     .legend {
-      width: 100%;
+        width: 100%;
     }
-  }
-  
-  @media (max-width: 768px) {
-    .legend {
-      flex-direction: row; /* Align items in a row */
-      flex-wrap: wrap; /* Wrap items */
-      justify-content: center;
-    }
-  
+}
+
+@media (max-width: 768px) {
     .legend h2 {
-      font-size: 16px;
+        font-size: 16px;
     }
-  
+
     .legend-item {
-      margin: 5px 10px; /* Add spacing between legend items */
+        flex-direction: column;
+        align-items: flex-start;
     }
-  
+
     .color-box {
-      width: 15px;
-      height: 15px;
+        width: 15px;
+        height: 15px;
     }
-  
+
     input {
-      padding: 6px;
+        padding: 6px;
     }
-  
+
     button {
-      padding: 8px 16px;
-      font-size: 14px;
+        padding: 8px 16px;
+        font-size: 14px;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .header h1 {
-      font-size: 20px;
+        font-size: 20px;
     }
-  
+
     .reservation-container {
-      padding: 10px;
+        padding: 10px;
     }
-  
+
     .date-picker-section,
     .time-picker-section,
     .legend {
-      padding: 5px;
+        padding: 5px;
     }
-  
+
     .legend h2 {
-      font-size: 14px;
+        font-size: 14px;
     }
-  
-    .legend-item {
-      margin: 5px 0;
-      flex-direction: row; /* Ensure items align horizontally */
-    }
-  
-    .color-box {
-      width: 15px;
-      height: 15px;
-    }
-  }
-  
+}

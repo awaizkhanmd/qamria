@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './ReservationPage.css';
 import logo from '../../../assests/logo.png';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 const ReservationPage = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -13,21 +14,51 @@ const ReservationPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [totalDuration, setTotalDuration] = useState({ hours: 0, minutes: 0 });
-  const today = new Date();
+  const [totalDuration, setTotalDuration] = useState({ hours: 0 });
+  const today = moment().startOf('day');
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Mock fetch date availability from backend
     const fetchDateAvailability = async () => {
       setIsLoading(true);
-      // Simulate a backend call
       setTimeout(() => {
         const data = {
-          '2024-08-01': { status: 'available', times: { '9:00 AM': 'available', '10:00 AM': 'maintenance', '11:00 AM': 'available', '12:00 PM': 'booked', '1:00 PM': 'available', '2:00 PM': 'available', '3:00 PM': 'available', '4:00 PM': 'booked', '5:00 PM': 'available', '6:00 PM': 'available', '7:00 PM': 'available', '8:00 PM': 'booked' } },
-          '2024-08-02': { status: 'pending', times: { '9:00 AM': 'booked', '10:00 AM': 'booked', '11:00 AM': 'available', '12:00 PM': 'booked', '1:00 PM': 'booked', '2:00 PM': 'booked', '3:00 PM': 'available', '4:00 PM': 'available', '5:00 PM': 'booked', '6:00 PM': 'booked', '7:00 PM': 'available', '8:00 PM': 'available' } },
-          '2024-08-03': { status: 'available', times: { '9:00 AM': 'maintenance', '10:00 AM': 'booked', '11:00 AM': 'available', '12:00 PM': 'booked', '1:00 PM': 'booked', '2:00 PM': 'booked', '3:00 PM': 'booked', '4:00 PM': 'booked', '5:00 PM': 'booked', '6:00 PM': 'booked', '7:00 PM': 'booked', '8:00 PM': 'booked' } },
-          // Add more dates and times as needed
+          '2024-08-02': {
+            times: {
+              '9:00 AM': 'booked',
+              '12:00 PM': 'booked',
+              '1:00 PM': 'booked',
+              '2:00 PM': 'booked',
+              '5:00 PM': 'booked',
+              '6:00 PM': 'booked'
+            }
+          },
+          '2024-08-03': {
+            times: {
+              '1:00 PM': 'booked',
+              '2:00 PM': 'booked',
+              '5:00 PM': 'booked',
+              '6:00 PM': 'booked',
+              '7:00 PM': 'booked',
+              '8:00 PM': 'booked'
+            }
+          },
+          '2024-08-04': {
+            times: {
+              '9:00 AM': 'booked',
+              '10:00 AM': 'booked',
+              '11:00 AM': 'booked',
+              '12:00 PM': 'booked',
+              '1:00 PM': 'booked',
+              '2:00 PM': 'booked',
+              '3:00 PM': 'booked',
+              '4:00 PM': 'booked',
+              '5:00 PM': 'booked',
+              '6:00 PM': 'booked',
+              '7:00 PM': 'booked',
+              '8:00 PM': 'booked'
+            }
+          }
         };
         setDateAvailability(data);
         setIsLoading(false);
@@ -41,23 +72,23 @@ const ReservationPage = () => {
     setSelectedDate(date);
     setSelectedTimes([]);
     setAvailableTimes([]);
-    setTotalDuration({ hours: 0, minutes: 0 });
+    setTotalDuration({ hours: 0 });
     if (date) {
-      const formattedDate = date.toISOString().split('T')[0];
+      const formattedDate = moment(date).format('YYYY-MM-DD');
       const availability = dateAvailability[formattedDate] || { times: {} };
-      const currentTime = new Date();
+      const currentTime = moment();
 
       const times = [
-        '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'
+        '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM',
+        '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'
       ].map((time) => {
         const [hour, period] = time.split(' ');
         const hourInt = parseInt(hour, 10);
         const nextHour = hourInt === 12 ? 1 : hourInt + 1;
         const nextPeriod = hourInt === 11 ? (period === 'AM' ? 'PM' : 'AM') : period;
 
-        // Convert slot time to Date object for comparison
-        const slotStartTime = new Date(`2024-01-01 ${time}`);
-        const bookingAllowed = date > today || (slotStartTime - currentTime) > (1000 * 60 * 60);
+        const slotStartTime = moment(`${formattedDate} ${hour} ${period}`, 'YYYY-MM-DD hh A');
+        const bookingAllowed = date > today.toDate() || (date.toDateString() === today.toDate().toDateString() && slotStartTime.isAfter(currentTime));
 
         return {
           start: `${hour} ${period}`,
@@ -73,16 +104,14 @@ const ReservationPage = () => {
   };
 
   const handleTimeSelection = (time) => {
-    if (time.status !== 'available') return; // Prevent selecting non-available times
+    if (time.status !== 'available') return;
 
     const existingIndex = selectedTimes.findIndex(t => t.key === time.key);
 
     if (existingIndex !== -1) {
-      // Deselect time
       const newSelectedTimes = selectedTimes.slice(0, existingIndex);
       setSelectedTimes(newSelectedTimes);
     } else {
-      // Select time only if it's in sequence
       if (selectedTimes.length === 0 || selectedTimes[selectedTimes.length - 1].key.split('-')[1] === time.key.split('-')[0]) {
         setSelectedTimes([...selectedTimes, time]);
       }
@@ -90,22 +119,19 @@ const ReservationPage = () => {
   };
 
   useEffect(() => {
-    // Calculate total duration based on the selected times
     if (selectedTimes.length > 0) {
       const first = selectedTimes[0];
       const last = selectedTimes[selectedTimes.length - 1];
-      const startTime = new Date(`2024-01-01 ${first.start}`);
-      const endTime = new Date(`2024-01-01 ${last.end}`);
-      if (!isNaN(startTime) && !isNaN(endTime)) {
-        const durationMs = endTime - startTime;
-        const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
-        const durationMinutes = (durationMs % (1000 * 60 * 60)) / (1000 * 60);
-        setTotalDuration({ hours: durationHours, minutes: durationMinutes });
+      const startTime = moment(`2024-01-01 ${first.start}`, 'YYYY-MM-DD hh A');
+      const endTime = moment(`2024-01-01 ${last.end}`, 'YYYY-MM-DD hh A');
+      if (startTime.isValid() && endTime.isValid()) {
+        const duration = moment.duration(endTime.diff(startTime));
+        setTotalDuration({ hours: Math.floor(duration.asHours()) });
       } else {
-        setTotalDuration({ hours: 0, minutes: 0 });
+        setTotalDuration({ hours: 0 });
       }
     } else {
-      setTotalDuration({ hours: 0, minutes: 0 });
+      setTotalDuration({ hours: 0 });
     }
   }, [selectedTimes]);
 
@@ -115,6 +141,24 @@ const ReservationPage = () => {
     setTimeout(() => {
       navigate('/team');
     }, 3000);
+  };
+
+  const getDayClassName = (date) => {
+    const formattedDate = moment(date).format('YYYY-MM-DD');
+    const availability = dateAvailability[formattedDate];
+    if (availability) {
+      const times = Object.values(availability.times);
+      const bookedCount = times.filter(status => status === 'booked').length;
+      const totalCount = times.length;
+      if (bookedCount >= 8) {
+        return 'booked-day';
+      } else if (bookedCount > 6) {
+        return 'mostly-booked-day';
+      } else if (times.some(status => status === 'pending')) {
+        return 'pending-day';
+      }
+    }
+    return 'available-day';
   };
 
   return (
@@ -134,11 +178,9 @@ const ReservationPage = () => {
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
-            filterDate={(date) => {
-              const formattedDate = date.toISOString().split('T')[0];
-              return date >= today && dateAvailability[formattedDate]?.status !== 'booked';
-            }}
-            minDate={today}
+            dayClassName={getDayClassName}
+            filterDate={(date) => date >= today.toDate()}
+            minDate={today.toDate()}
             inline
           />
         </div>
@@ -159,6 +201,10 @@ const ReservationPage = () => {
           <div className="legend-item">
             <div className="color-box booked-date"></div>
             <span>Already Booked</span>
+          </div>
+          <div className="legend-item">
+            <div className="color-box mostly-booked-day"></div>
+            <span>Mostly Booked</span>
           </div>
           <div className="legend-item">
             <div className="color-box closed-date"></div>
@@ -184,7 +230,7 @@ const ReservationPage = () => {
             )}
           </div>
           {selectedTimes.length > 0 && (
-            <p>Total Time: {selectedTimes[0].start} - {selectedTimes[selectedTimes.length - 1].end} ({totalDuration.hours} hours {totalDuration.minutes} minutes)</p>
+            <p>Total Time: {selectedTimes[0].start} - {selectedTimes[selectedTimes.length - 1].end} ({totalDuration.hours} hours)</p>
           )}
         </div>
       </div>
@@ -193,7 +239,7 @@ const ReservationPage = () => {
           <h2>Enter Details for Selected Date and Time</h2>
           <p>Selected Date: {selectedDate.toDateString()}</p>
           <p>Selected Time: {selectedTimes[0].start} - {selectedTimes[selectedTimes.length - 1].end}</p>
-          <p>Total Duration: {totalDuration.hours} hours {totalDuration.minutes} minutes</p>
+          <p>Total Duration: {totalDuration.hours} hours</p>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Name:</label>
