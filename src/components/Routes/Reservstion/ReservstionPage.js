@@ -96,10 +96,14 @@ const ReservationPage = () => {
       const last = selectedTimes[selectedTimes.length - 1];
       const startTime = new Date(`2024-01-01 ${first.start}`);
       const endTime = new Date(`2024-01-01 ${last.end}`);
-      const durationMs = endTime - startTime;
-      const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
-      const durationMinutes = (durationMs % (1000 * 60 * 60)) / (1000 * 60);
-      setTotalDuration({ hours: durationHours, minutes: durationMinutes });
+      if (!isNaN(startTime) && !isNaN(endTime)) {
+        const durationMs = endTime - startTime;
+        const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
+        const durationMinutes = (durationMs % (1000 * 60 * 60)) / (1000 * 60);
+        setTotalDuration({ hours: durationHours, minutes: durationMinutes });
+      } else {
+        setTotalDuration({ hours: 0, minutes: 0 });
+      }
     } else {
       setTotalDuration({ hours: 0, minutes: 0 });
     }
