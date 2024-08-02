@@ -25,7 +25,7 @@ const ReservationPage = () => {
         const data = {
           '2024-08-02': {
             times: {
-              '9:00 AM': 'booked',
+              '9:00 AM': 'pending',
               '12:00 PM': 'booked',
               '1:00 PM': 'booked',
               '2:00 PM': 'booked',
@@ -35,7 +35,7 @@ const ReservationPage = () => {
           },
           '2024-08-03': {
             times: {
-              '1:00 PM': 'booked',
+              '1:00 PM': 'maintenance',
               '2:00 PM': 'booked',
               '5:00 PM': 'booked',
               '6:00 PM': 'booked',
@@ -185,15 +185,12 @@ const ReservationPage = () => {
           />
         </div>
         <div className="legend">
-          <h2>Slot Legend</h2>
+          <h2>Slot </h2>
           <div className="legend-item">
             <div className="color-box available-date"></div>
             <span>Available</span>
           </div>
-          <div className="legend-item">
-            <div className="color-box selected-date"></div>
-            <span>Selected</span>
-          </div>
+         
           <div className="legend-item">
             <div className="color-box pending-date"></div>
             <span>Pending for Approval</span>
@@ -202,10 +199,7 @@ const ReservationPage = () => {
             <div className="color-box booked-date"></div>
             <span>Already Booked</span>
           </div>
-          <div className="legend-item">
-            <div className="color-box mostly-booked-day"></div>
-            <span>Mostly Booked</span>
-          </div>
+        
           <div className="legend-item">
             <div className="color-box closed-date"></div>
             <span>Maintenance/Closed</span>
