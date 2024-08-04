@@ -1,0 +1,247 @@
+/* Add margin-bottom to the main content wrapper */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding-bottom: 100px; /* Add space at the bottom */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.logo {
+  margin: 10px;
+  width: 80px; /* Adjust width of the logo */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.welcome-title {
+  font-size: 24px;
+  color: #286445;
+  margin-top: 10px;
+}
+
+/* Container Wrapper Styles */
+.container-wrapper {
+  display: flex;
+  justify-content: center; /* Center the containers horizontally */
+  align-items: center; /* Center the containers vertically */
+  gap: 10px; /* Gap between containers */
+  width: 100%;
+  height: auto; /* Adjust height based on content */
+  margin: 0;
+}
+
+/* Container Styles */
+.container1, .container2 {
+  display: flex;
+  height: 50vh;
+  width: 45%; /* Adjust width for better spacing */
+  position: relative;
+  box-shadow: 0 4px 8px rgba(39, 1, 1, 0.2); /* Shadow for the container */
+  border-radius: 10px;
+  overflow: hidden; /* Ensure content is clipped to the container */
+  transition: transform 0.5s; /* Smooth zoom-in effect */
+}
+
+/* Separate the containers with a gap */
+.container1 {
+  margin-right: 10px; /* Gap to the right */
+}
+
+.container2 {
+  margin-left: 10px; /* Gap to the left */
+}
+
+/* Component Styles */
+.left, .right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%; /* Full height of container */
+  width: 100%; /* Full width of container */
+  transition: transform 0.5s; /* Smooth zoom-in effect */
+}
+
+.left {
+  background-image: url('../../assests/table-ass/INTERIOR_TABLESETTING_RESERVATION-PGE.jpg'); /* Ensure the image path is correct */
+  background-size: cover;
+  background-position: center;
+}
+
+.right {
+  background-color: #f0f0f0;
+  background-image: url('../../assests/table-ass/trays@2x.png'); /* Ensure the image path is correct */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Apply zoom-in effect on hover over the components */
+.left:hover, .right:hover {
+  transform: scale(1.05); /* Zoom-in effect on hover */
+}
+
+/* Button Styles */
+.reservation-button, .catering-button {
+  padding: 20px 40px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(206, 31, 31, 0.3);
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent */
+  z-index: 2;
+  position: absolute;
+}
+
+.reservation-button {
+  background-color: rgba(29, 72, 17, 0.8); /* Slightly transparent color */
+}
+
+.catering-button {
+  background-color: rgba(76, 175, 80, 0.8); /* Slightly transparent color */
+}
+
+/* Button hover effect */
+.reservation-button:hover, .catering-button:hover {
+  transform: scale(1.1); /* Zoom-in effect on hover */
+  background-color: rgba(0, 23, 0, 0.9); /* Slightly less transparent on hover */
+  box-shadow: 0 6px 12px rgba(25, 50, 7, 0.4);
+}
+
+/* Center buttons in their respective components */
+.left .reservation-button, .right .catering-button {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Footer Styles */
+.footer {
+  width: 100%;
+  background-color: #333; /* Dark background for footer */
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff; /* White text color */
+}
+
+.footer-logo {
+  width: 80px; /* Smaller logo in footer */
+  margin-bottom: 10px;
+}
+
+.footer-tagline {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.social-media {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-media a {
+  text-decoration: none;
+  color: #fff; /* White color for icons */
+  font-size: 24px; /* FontAwesome icon size */
+  transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Loading Screen Styles */
+.loading-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+}
+
+.loading-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #007bff;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container-wrapper {
+      flex-direction: column; /* Stack containers vertically on mobile */
+      height: auto; /* Allow height to adjust */
+  }
+
+  .container1, .container2 {
+      width: 90%; /* Adjust width for mobile */
+      margin: 0 0 10px 0; /* Margin for top and bottom */
+  }
+
+  .container2 {
+      margin-bottom: 0; /* Remove margin at bottom for the last container */
+  }
+
+  .reservation-button, .catering-button {
+      padding: 15px 30px;
+      font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reservation-button, .catering-button {
+      padding: 10px 20px;
+      font-size: 16px;
+  }
+
+  .footer-logo {
+      width: 60px; /* Smaller logo on mobile */
+  }
+
+  .footer-tagline {
+      font-size: 14px;
+  }
+
+  .social-media a {
+      font-size: 20px; /* Smaller icons on mobile */
+  }
+
+  .footer-content p {
+      font-size: 12px;
+  }
+}

@@ -18,7 +18,7 @@ const Team = () => {
     <div className="page-container">
       <header className="header">
         <img src={logo} alt="Logo" className="logo" />
-        <h1 className="welcome-title">Welcome to.....</h1>
+        <h1 className="welcome-title">Welcome </h1>
       </header>
       
       <div className="container-wrapper">
