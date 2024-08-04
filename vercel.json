@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "qamria-fe/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "qamria-fe/build"
+      }
+    },
+    {
+      "src": "qamria-be/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/qamria-be/index.js" },
+    { "src": "/(.*)", "dest": "/qamria-fe/build/$1" }
+  ]
+}
